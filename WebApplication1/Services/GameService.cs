@@ -37,5 +37,25 @@ namespace Games.Services
             context.SaveChanges();
 
         }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Edit(int id, CreateformaddedGameVM game)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Game>> Getall()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Game> Getbyid(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
