@@ -10,7 +10,7 @@ namespace Games.View_Model
     {
 
         [MaxLength(250)]
-        [email(fileSetting.l)]
+        
         public string Name { get; set; } = string.Empty;
 
         [Display(Name ="Categories")]
@@ -23,8 +23,8 @@ namespace Games.View_Model
         [MaxLength(3000)]
         [Required]
         public string Discreption { get; set; } = string.Empty;
-        [Allowextention(fileSetting.extentionallow)]
-        [AllowSize(fileSetting.maxallowsize)]
+        //[Allowextention(fileSetting.extentionallow)]
+       // [AllowSize(fileSetting.maxallowsize)]
         public IFormFile Cover { get; set; } = default!;
     }
 }

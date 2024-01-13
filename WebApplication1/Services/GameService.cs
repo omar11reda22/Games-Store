@@ -1,6 +1,7 @@
 ﻿using Games.Data;
 using Games.Models;
 using Games.View_Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Games.Services
 {
@@ -48,14 +49,18 @@ namespace Games.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<Game>> Getall()
+        public List<Game> Getall()
         {
-            throw new NotImplementedException();
+          return context.games.
+                Include(g =>g.category)
+                .Include(g =>g.gamedevice)
+                .AsNoTracking().ToList();
         }
 
-        public Task<Game> Getbyid(int id)
+        public Game? Getbyid(int id)
         {
-            throw new NotImplementedException();
+            var items = context.games.Include(g => g.category).Include(g => g.gamedevice).SingleOrDefault(g => g.Id == id);
+            return items;
         }
     }
 }

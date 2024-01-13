@@ -1,14 +1,23 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Games.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Games.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IGameService _gameService;
+
+        public HomeController(IGameService gameService)
+        {
+            _gameService = gameService;
+        }
+
         // GET: HomeController
         public ActionResult Index()
         {
-            return View();
+            var items = _gameService.Getall();
+            return View(items);
         }
 
         // GET: HomeController/Details/5

@@ -8,8 +8,8 @@ namespace Games.Services
     {
         Task Create(CreateformaddedGameVM game);
         Task Delete(int id);
-        Task<List<Game>> Getall();
-        Task<Game> Getbyid(int id);
+        List<Game> Getall();
+        Game? Getbyid(int id);
         Task Edit(int id, CreateformaddedGameVM game);
       
     }
