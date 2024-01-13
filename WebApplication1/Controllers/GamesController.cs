@@ -21,11 +21,38 @@ namespace Games.Controllers
             this._gameService = gameService;
         }
 
+        // gett all games from db
         public IActionResult Index()
+        {
+            var games =  _gameService.Getall();
+            return View(games);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var game = _gameService.Getbyid(id);
+            if(game == null)
+            {
+                return NotFound("no games");
+            }
+            return View(game);
+        }
+
+        // open form view to doing updateing  
+        [HttpGet]
+        public IActionResult Edit()
         {
 
             return View();
         }
+        [HttpPost]
+        public IActionResult Edit(int id , CreateformaddedGameVM gameVM)
+        {
+            return View();
+        }
+
+
+
         // open form to add a new game just form
         [HttpGet]
         public IActionResult Create()

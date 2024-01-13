@@ -17,7 +17,7 @@ namespace Games.CustomValidations
             {
                 if (file.Length > _maxallowsize)
                 {
-                    return new ValidationResult($"max size allowed is  {_maxallowsize}");
+                    return new ValidationResult($"max size allowed is  {_maxallowsize}MG");
                 }
                
 

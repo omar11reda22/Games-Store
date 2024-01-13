@@ -1,10 +1,10 @@
 ﻿@model CreateformaddedGameVM;
 @{
-ViewData["Title"] = "add game";
-
+    ViewData["Title"] = "add game";
+    Layout = "_Layout";
 }
-<h5>
-    <i class="bi bi-plus-circle-dotted"></i>
+<h5 mt-4>
+    <i class="bi bi-plus-circle"></i>
     Add a New Game
 </h5>
 
@@ -58,8 +58,8 @@ ViewData["Title"] = "add game";
             </button>
 
         </div>
-        <div class="col-md-6">
-
+        <div class="col-md-6 d-flex justify-content-center pt-4 overflow-hidden">
+            <img class="cover-preview d-none" alt="Cover" />
         </div>
 
 
@@ -69,4 +69,13 @@ ViewData["Title"] = "add game";
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#Cover').on('change', function () {
+                $('.cover-preview').attr('src', window.URL.createObjectURL(this.files[0])).removeClass('d-none');
+            });
+        });
+
+    </script>
+
 }
