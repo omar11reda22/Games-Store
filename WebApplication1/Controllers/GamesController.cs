@@ -1,4 +1,5 @@
 ﻿using Games.Data;
+using Games.Models;
 using Games.Services;
 using Games.View_Model;
 using Microsoft.AspNetCore.Mvc;
@@ -40,15 +41,44 @@ namespace Games.Controllers
 
         // open form view to doing updateing  
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
+            var item = _gameService.Getbyid(id);
+            if (item == null)
+                return NotFound();
+            EditGameViewmodel editGameViewmodel = new()
+            {
+               id = item.Id,
+               Name = item.Name,
+               Discreption = item.Discreption,
+               categoryID = item.categoryID,
+               selecteddevices = item.gamedevice.Select(s => s.deviceid).ToList(),
+               Categories = categoryService.Getcategories(),
+               Devices = deviceService.Getalldevices(),
+               currentcover = item.Cover
 
-            return View();
+            };
+                     
+
+            return View(editGameViewmodel);
         }
         [HttpPost]
-        public IActionResult Edit(int id , CreateformaddedGameVM gameVM)
+        public async Task<IActionResult> Edit( EditGameViewmodel gameVM)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                gameVM.Categories = categoryService.Getcategories();
+                gameVM.Devices = deviceService.Getalldevices();
+                return View(gameVM);
+
+            }
+            var game = await _gameService.Edit(gameVM);
+            if (game is null)
+                return BadRequest();
+            return RedirectToAction(nameof(Index));
+
+
+        
         }
 
 
@@ -90,6 +120,14 @@ namespace Games.Controllers
             }
 
             return View();
+        }
+       
+        public  IActionResult Delete(int id)
+        {
+            var isdeleted = _gameService.Delete(id);
+            if (isdeleted == false)
+                return BadRequest();
+            return RedirectToAction(nameof(Index));
         }
     }
 }

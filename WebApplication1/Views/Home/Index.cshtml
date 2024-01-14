@@ -1,11 +1,11 @@
 ﻿
 @model IEnumerable<Game>
 
-<p>index</p>
 
-<a asp-action="Create">
+
+@* <a asp-action="Create">
     Create
-</a>
+</a> *@
 @if (!Model.Any())
 {
     <div class="alert alert-warning mt-5">
@@ -41,7 +41,7 @@ else
                 }
                 </div> *@
                     </div>
-                </a>instance of an object.'
+                </a>
 
             </div>
         }
