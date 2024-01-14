@@ -7,10 +7,10 @@ namespace Games.Services
     public interface IGameService
     {
         Task Create(CreateformaddedGameVM game);
-        Task Delete(int id);
+        bool Delete(int id);
         List<Game> Getall();
         Game? Getbyid(int id);
-        Task Edit(int id, CreateformaddedGameVM game);
+        Task<Game?> Edit(EditGameViewmodel game);
       
     }
 }
