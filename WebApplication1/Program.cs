@@ -1,5 +1,6 @@
 using Games.Data;
 using Games.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1
@@ -18,7 +19,11 @@ namespace WebApplication1
             builder.Services.AddScoped<ICategoryservice, CategoryService>();
             builder.Services.AddScoped<IDeviceService, DevicesServices>();
             builder.Services.AddTransient<IGameService, GameService>();
-
+            builder.Services.AddIdentity<Applicationuser, IdentityRole>(option => { 
+            option.Password.RequireLowercase = false;
+            option.Password.RequireUppercase = false;
+            option.Password.RequireDigit = false;
+            }).AddEntityFrameworkStores<Applicationcontext>();
 
 
             var app = builder.Build();
@@ -35,12 +40,11 @@ namespace WebApplication1
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
-
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Homepage}/{id?}");
 
             app.Run();
         }

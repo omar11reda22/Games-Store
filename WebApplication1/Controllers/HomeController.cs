@@ -19,7 +19,11 @@ namespace Games.Controllers
             var items = _gameService.Getall();
             return View(items);
         }
-
+        // Welcom page 
+        public IActionResult Homepage()
+        {
+            return View();
+        }
         // GET: HomeController/Details/5
         public ActionResult Details(int id)
         {

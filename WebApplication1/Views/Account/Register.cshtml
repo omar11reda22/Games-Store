@@ -1,0 +1,50 @@
+﻿@model Games.View_Model.RegisterationViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>Register</h1>
+
+<h4>RegisterationViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMAIL" class="control-label"></label>
+                <input asp-for="EMAIL" class="form-control" />
+                <span asp-validation-for="EMAIL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="confirmepassword" class="control-label"></label>
+                <input asp-for="confirmepassword" class="form-control" />
+                <span asp-validation-for="confirmepassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

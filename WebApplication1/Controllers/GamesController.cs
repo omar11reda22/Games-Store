@@ -2,11 +2,13 @@
 using Games.Models;
 using Games.Services;
 using Games.View_Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 namespace Games.Controllers
 {
+    [Authorize] // check cookie if  valid can request else if expire must login again 
     public class GamesController : Controller
     {
        // private readonly Applicationcontext context;
