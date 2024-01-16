@@ -1,9 +1,10 @@
 ﻿using Games.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Games.Data
 {
-    public class Applicationcontext:DbContext
+    public class Applicationcontext: IdentityDbContext<Applicationuser>
     {
         public Applicationcontext()
         {
